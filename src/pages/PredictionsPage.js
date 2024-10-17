@@ -17,7 +17,7 @@ const PredictionsPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createPrediction({ question });
+    await createPrediction(question); 
     setQuestion('');
     loadPredictions();
   };
@@ -32,8 +32,7 @@ const PredictionsPage = () => {
       <h1>Prediction Generator</h1>
       <form onSubmit={handleSubmit} className="feedback-form">
         <h2>Ask a Question</h2>
-        <input
-          type="text"
+        <textarea
           placeholder="Enter your question"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
