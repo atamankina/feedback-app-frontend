@@ -18,7 +18,7 @@ const FeedbackPage = () => {
 
   return (
     <div className='container'>
-      <h1>Feedback App</h1>
+      <h1>Feedback</h1>
       <FeedbackForm onFeedbackAdded={loadFeedback} />
       <FeedbackList feedbacks={feedbacks} onFeedbackDeleted={loadFeedback} />
     </div>
