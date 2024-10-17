@@ -9,7 +9,6 @@ export const createPrediction = async (question) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ question }),
-      mode: 'no-cors' 
     });
 
     if (!response.ok) {
@@ -28,7 +27,6 @@ export const getPredictions = async () => {
   try {
     const response = await fetch(`${PREDICTION_API_URL}/prediction`, {
       method: 'GET',
-      mode: 'no-cors' 
     });
 
     if (!response.ok) {
@@ -36,7 +34,6 @@ export const getPredictions = async () => {
     }
 
     const result = await response.json();
-    // Return the array of predictions, including question, predictionId, and prediction
     return result.map(prediction => ({
       question: prediction.question,
       predictionId: prediction.predictionId,
@@ -44,6 +41,7 @@ export const getPredictions = async () => {
     }));
   } catch (error) {
     console.error('Error fetching predictions:', error);
+    return [];
   }
 };
 
@@ -52,7 +50,6 @@ export const deletePrediction = async (id) => {
   try {
     const response = await fetch(`${PREDICTION_API_URL}/prediction/${id}`, {
       method: 'DELETE',
-      mode: 'no-cors' 
     });
 
     if (!response.ok) {

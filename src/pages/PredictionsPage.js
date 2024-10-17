@@ -11,20 +11,32 @@ const PredictionsPage = () => {
   }, []);
 
   const loadPredictions = async () => {
-    const predictionData = await getPredictions();
-    setPredictions(predictionData);
+    try {
+      const predictionData = await getPredictions();
+      setPredictions(predictionData || []);
+    } catch (error) {
+      console.error('Error loading predictions:', error);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createPrediction(question); 
-    setQuestion('');
-    loadPredictions();
+    try {
+      await createPrediction(question);
+      setQuestion('');
+      loadPredictions();
+    } catch (error) {
+      console.error('Error submitting prediction:', error);
+    }
   };
 
   const handleDelete = async (id) => {
-    await deletePrediction(id);
-    loadPredictions();
+    try {
+      await deletePrediction(id);
+      loadPredictions();
+    } catch (error) {
+      console.error(`Error deleting prediction with ID ${id}:`, error);
+    }
   };
 
   return (
