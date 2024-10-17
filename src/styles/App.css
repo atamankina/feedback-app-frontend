@@ -123,3 +123,29 @@ input:focus, textarea:focus {
     max-width: 600px; /* Limit max width for form */
     margin: 0 auto; /* Center the form */
 }
+
+/* Add navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: lowercase;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar a:hover {
+    color: #ff4081;
+  }
+  
+  /* Rest of the styles remain the same */
+  

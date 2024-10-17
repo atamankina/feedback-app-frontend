@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import FeedbackForm from './components/FeedbackForm';
-import FeedbackList from './components/FeedbackList';
-import { getFeedback } from './api/feedbackApi';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import FeedbackPage from './pages/FeedbackPage';
+import PredictionsPage from './pages/PredictionsPage';
 import './styles/App.css';
 
 function App() {
-  const [feedbacks, setFeedbacks] = useState([]);
-
-  useEffect(() => {
-      loadFeedback();
-  }, []);
-
-  const loadFeedback = async () => {
-    const feedbackData = await getFeedback();
-    setFeedbacks(feedbackData);
-  }
-
   return (
-    <div className='container'>
-      <h1>Feedback App</h1>
-      <FeedbackForm onFeedbackAdded={loadFeedback}/>
-      <FeedbackList feedbacks={feedbacks} onFeedbackDeleted={loadFeedback}/>
-    </div>
+    <Router>
+      <div className='container'>
+        <nav className="navbar">
+          <Link to="/">Feedback</Link>
+          <Link to="/predictions">Predictions</Link>
+        </nav>
+        <Routes>
+          <Route path="/" element={<FeedbackPage />} />
+          <Route path="/predictions" element={<PredictionsPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
