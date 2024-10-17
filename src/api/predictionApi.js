@@ -2,17 +2,23 @@ import { PREDICTION_API_URL } from '../config';
 
 // Create a new prediction
 export const createPrediction = async (question) => {
-  const response = await fetch(`${PREDICTION_API_URL}/prediction`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ question }),
-  });
+    try {
+      const response = await fetch(`${PREDICTION_API_URL}/prediction`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Origin': 'http://localhost:3000', // Optional if needed
+        },
+        body: JSON.stringify({ question }),
+      });
   
-  const result = await response.json();
-  return result;
-};
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error('Error during the API request:', error);
+    }
+  };
+  
 
 // Get all predictions from the API
 export const getPredictions = async () => {
