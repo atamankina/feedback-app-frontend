@@ -8,17 +8,17 @@ export const createFeedback = async (feedback) => {
         },
         body: JSON.stringify(feedback)
     });
-    return response.json();
+    return response.json().data;
 }
 
 export const getFeedback = async () => {
     const response = await fetch(BACKEND_URL);
-    return response.json();
+    return response.json().data;
 }
 
 export const deleteFeedback = async (title) => {
     const response = await fetch(`${BACKEND_URL}/${title}`, {
         method: 'DELETE'
     });
-    return response.json();
+    return response.json().message;
 }
